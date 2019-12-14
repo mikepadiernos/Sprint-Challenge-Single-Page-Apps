@@ -3,7 +3,7 @@ import axios from "axios";
 import CharacterCard from "./CharacterCard";
 import SearchForm from "./SearchForm";
 
-export default function CharacterList({characters, setSearchTerm, }) {
+export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
   const [characters, setCharacters] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +17,8 @@ export default function CharacterList({characters, setSearchTerm, }) {
       .get("https://rick-api.herokuapp.com/api/character/")
       .then(response => {
         console.log(response.data.results);
-        setCharacters(response.data.results)
+        setCharacters(response.data.results);
+        setSearchTerm(" ");
       })
       .catch(error => {
         console.log("Sorry", error);
@@ -26,18 +27,23 @@ export default function CharacterList({characters, setSearchTerm, }) {
 
   useEffect(() => {
     const results = characters.filter(item => {
-      return item.toLowerCase().includes(searchTerm.toLowerCase());
+      return item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.status.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.species.toLowerCase().includes(searchTerm.toLowerCase());
     });
-    console.log(characters);
+    console.log("Results:", results);
 
     setSearchResults(results);
   }, [searchTerm]);
+
+  console.log("Characters:", characters);
 
   return (
     <div>
       <SearchForm setSearchTerm={setSearchTerm} />
       <section className="character-list grid-view">
-        {characters.map(char => {
+        {searchResults.map(char => {
             return <CharacterCard name={char.name} status={char.status} species={char.species} gender={char.gender} image={char.image} key={char.id}/>
           })
         }
