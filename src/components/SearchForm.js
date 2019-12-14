@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import {SearchLabel} from "../styles/Search"
+import React  from "react";
+import { SearchLabel } from "../styles/Search"
+import { Section } from "../styles/Sections";
 
 export default function SearchForm({ setSearchTerm }) {
 
@@ -8,12 +9,12 @@ export default function SearchForm({ setSearchTerm }) {
   };
 
   return (
-    <section className="search-form">
+    <Section className="search-form">
      {/*// Add a search form here*/}
       <form>
         <SearchLabel htmlFor="search" >Search</SearchLabel>
         <input type="text" id="search" name="search" placeholder="Search" onChange={handleChange} />
       </form>
-    </section>
+    </Section>
   );
 }
