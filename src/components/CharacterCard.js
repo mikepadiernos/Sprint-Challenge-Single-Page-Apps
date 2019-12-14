@@ -1,9 +1,10 @@
 import React from "react";
+import { Card } from "../styles/Cards"
 
 export default function CharacterCard(props) {
   const { name, status, species, gender, image } = props;
   return (
-    <article className="card">
+    <Card className="card">
       <div className="card-header">
         <h2>{name}</h2>
         <img src={image} alt=""/>
@@ -12,32 +13,32 @@ export default function CharacterCard(props) {
         <table>
           <tbody>
             <tr>
-              <td>
+              <td className="info-label">
                 Status:
               </td>
-              <td>
+              <td className="info-text">
                 {status}
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="info-label">
                 Gender:
               </td>
-              <td>
+              <td className="info-text">
                 {gender}
               </td>
             </tr>
             <tr>
-              <td>
+              <td className="info-label">
                 Species:
               </td>
-              <td>
+              <td className="info-text">
                 {species}
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-    </article>
+    </Card>
   );
 }
