@@ -13,8 +13,8 @@ export default function CharacterList() {
     // TODO: Add API Request here - must run in `useEffect`
     //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
     axios
-      // .get("https://rickandmortyapi.com/api/character/")
-      .get("https://rick-api.herokuapp.com/api/character/")
+      .get("https://rickandmortyapi.com/api/character/")
+      // .get("https://rick-api.herokuapp.com/api/character/")
       .then(response => {
         console.log(response.data.results);
         setCharacters(response.data.results);
